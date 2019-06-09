@@ -1,0 +1,8 @@
+version: '3'
+services:
+  python:
+    build: .
+    volumes:
+      - ./app:/usr/src/app
+      - ./images:/images
+    command: --team-drive-id ${TEAM_DRIVE_ID} --train-gdrive-id ${TRAIN_GDRIVE_ID} --service-account-key ${SERVICE_ACCOUNT_KEY}
