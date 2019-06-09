@@ -1,4 +1,5 @@
 .DS_Store
 .env
+app/__pycache__
 images/*
 !images/.gitignore

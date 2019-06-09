@@ -9,6 +9,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import requests
 from io import open as iopen
 import stich
+from apiclient.http import MediaFileUpload
 
 parser = argparse.ArgumentParser(description='Check for new images for Lens Model')
 parser.add_argument('--team-drive-id', type=str, help='Path of the local file or GCS blob containing the Input 1 data.')
@@ -112,8 +113,18 @@ for key, value in gthumbs.items():
 
 for dir in grirs:
     gdir = "/images/" + grirs[dir]["label"]
-    print(gdir)
-    stich.generate(gdir)
+    grid = stich.generate(gdir)
 
+    # file_metadata = {
+    #     'name': grirs[dir]["label"] + '.jpeg',
+    #     'parents': grirs[dir]["gdid"]
+    # }
+    # media = MediaFileUpload(grid,
+    #                         mimetype='image/jpeg')
+    # file = drive.files().create(body=file_metadata,
+    #                             supportsAllDrives='true',
+    #                             media_body=media,
+    #                             fields='id').execute()
+    # print('File ID: %s' % file.get('id'))
 
 quit()

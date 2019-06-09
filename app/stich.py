@@ -5,8 +5,8 @@ from PIL import Image
 
 def generate(dir):
     files = glob.glob(dir + '/*')
-    resultHeight = int(round(len(files) / 8 * 100))
-    result = Image.new("RGB", (800, resultHeight))
+    resultHeight = int(round(len(files) / 15 * 100))
+    result = Image.new("RGB", (1500, resultHeight))
 
     for index, file in enumerate(files):
       path = os.path.expanduser(file)
@@ -19,3 +19,5 @@ def generate(dir):
       result.paste(img, (x, y, x + w, y + h))
 
     result.save(os.path.expanduser(dir + 'result.jpg'))
+
+    return dir + 'result.jpg'
