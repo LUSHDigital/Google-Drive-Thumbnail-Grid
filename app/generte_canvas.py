@@ -107,6 +107,8 @@ for key, value in gfiles.items():
         }
 
 for key, value in gthumbs.items():
+    print("fetching:")
+    print(value)
     fetch_image(value["thumb"], value["parent"])
 
 
