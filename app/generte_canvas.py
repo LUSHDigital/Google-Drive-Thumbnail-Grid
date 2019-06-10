@@ -106,8 +106,8 @@ for key, value in gfiles.items():
             "parent" : gparent
         }
 
-print("Total gthumbs:")
-print(gthumbs)
+with open('gthumbs.txt', 'w') as f:
+    print(gthumbs, file=f)
 
 for key, value in gthumbs.items():
     print("gthumbs.items key:")
