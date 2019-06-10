@@ -24,7 +24,8 @@ credentials = ServiceAccountCredentials.from_json_keyfile_dict(key , "https://ww
 drive = build('drive', 'v3', cache_discovery=False, credentials=credentials)
 
 def print_file_metadata(drive, file_id):
-    response = drive.files().get(supportsTeamDrives='true',fileId=file_id,fields='thumbnailLink').execute()
+    response = drive.files().get(supportsTeamDrives='true',
+                                 fileId=file_id,fields='thumbnailLink').execute()
     thumbnailLink = response.get('thumbnailLink', [])
     return thumbnailLink
 
@@ -77,14 +78,13 @@ def fetch_image(img_ur, parent):
     img = requests.get(img_ur)
     if img.status_code == 200:
         print(200)
+        print(save_filename)
         with iopen(save_filename, 'wb') as f:
             f.write(img.content)
     else:
         print('Received error: {}'.format(img.status_code))
 
 grirs = fetch_gdrive_metadata(drive, args.team_drive_id, args.train_gdrive_id, "")
-
-print(grirs)
 
 gfiles = {}
 gthumbs = {}
@@ -106,12 +106,15 @@ for key, value in gfiles.items():
             "parent" : gparent
         }
 
+print("Total gthumbs:")
+print(gthumbs)
+
 for key, value in gthumbs.items():
-    print("fetching:")
+    print("gthumbs.items key:")
+    print(key)
+    print("gthumbs.items value:")
     print(value)
     fetch_image(value["thumb"], value["parent"])
-
-
 
 for dir in grirs:
     gdir = "/images/" + grirs[dir]["label"]

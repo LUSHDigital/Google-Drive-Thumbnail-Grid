@@ -15,7 +15,6 @@ def generate(dir):
       x = index // 2 * 100
       y = index % 2 * 100
       w, h = img.size
-      print('pos {0},{1} size {2},{3}'.format(x, y, w, h))
       result.paste(img, (x, y, x + w, y + h))
 
     result.save(os.path.expanduser(dir + 'result.jpg'))
